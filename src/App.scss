@@ -1,0 +1,322 @@
+/*
+    App Styling
+*/
+
+/********************************************************************/
+/**************************** Variables *****************************/
+/********************************************************************/
+
+$bg-color: #F3F5F9;
+$bg-text-color: #a3a3a3;
+$green-color: #53A492;
+$light-green-color: #DCECEE;
+$white-color: #FFFFFF;
+$dark-gray: #B4C0D3;
+
+/********************************************************************/
+/************************ General Styling ***************************/
+/********************************************************************/
+
+.min-height-100vh {
+  min-height: 100vh;
+}
+
+.min-height-75vh {
+  min-height: 75vh;
+}
+
+.min-height-50vh {
+  min-height: 50vh;
+}
+
+.min-height-25vh {
+  min-height: 25vh;
+}
+
+.text-color {
+  color: $bg-text-color;
+}
+
+.btn-light-green-color {
+  background-color: $green-color !important;
+  color: $white-color;
+  &:hover {
+    color: $white-color;
+  }
+}
+
+.bg-light-green-color {
+  background-color: $green-color !important;
+}
+
+.loader {
+  div:first-child {
+    display: block !important;
+    text-align: center;
+  }
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+  margin-left: 0;
+  z-index: 1;
+  width: 50%;
+}
+
+body.sb-sidenav-toggled #wrapper #main-content-wrapper {
+  margin-left: 50%;
+  z-index: 0;
+}
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  position: fixed;
+  min-height: 100vh;
+  margin-left: -317px;
+  padding: 14px 20px;
+  -webkit-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+  box-shadow: 5px 0 8px -4px #e9ecef;
+  background-color: #FFFFFF;
+  z-index: 0;
+  h3 {
+    span {
+      font-size: 16px;
+      font-weight: normal;
+      float: right;
+      color: #a3a3a3;
+      margin-top: 12px;
+    }
+  }
+}
+
+#main-content-wrapper {
+  min-width: 100vw;
+  width: 100%;
+  padding: 15px 15px 0 15px;
+  position: unset;
+  right: auto;
+  z-index: 1;
+  -webkit-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+  .collapse-btn {
+    display: block;
+    padding: 0;
+    &:focus {
+      outline: unset;
+      border: unset;
+      box-shadow: unset;
+    }
+  }
+
+}
+
+.bolder-font {
+  font-weight: bolder;
+}
+
+.round-badge {
+  border-radius: 15px;
+  padding: 8px 20px;
+}
+
+/********************************************************************/
+/************************* Search Styling ***************************/
+/********************************************************************/
+
+#search {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  background: $bg-color;
+  svg {
+    color: $bg-text-color;
+    font-size: 20px;
+    margin: 10px 10px 0 15px;
+  }
+  input {
+    color: $bg-text-color;
+    background: transparent;
+    border: unset !important;
+    outline: none !important;
+    box-shadow: none !important;
+    &:focus {
+      border: unset;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+/********************************************************************/
+/************************ Contacts Styling **************************/
+/********************************************************************/
+
+.contacts {
+  width: 100%;
+  height: 79vh;
+  padding-bottom: 15px;
+  position: relative;
+  overflow-y: scroll;
+  li {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+.checkbox {
+  input {
+    background: $dark-gray;
+    color: $white-color;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px !important;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+    &:after {
+      font-size: 12px;
+      margin-left: 5px;
+      content: '✔';
+    }
+    &:checked {
+      background: $green-color;
+      border-color: $green-color;
+      font-size: 12px;
+      &:after {
+        font-size: 12px;
+        content: unset;
+      }
+    }
+  }
+  label {
+    margin: 1px 0 0 25px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+/********************************************************************/
+/************************ Filters Styling ***************************/
+/********************************************************************/
+
+.filters {
+  position: relative;
+  height: 90vh;
+  h6 {
+    font-size: 14px;
+  }
+  .tags {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  .tags > div {
+    margin-top: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    right: -17px;
+    overflow-y: scroll;
+    div {
+      cursor: pointer;
+      width: 95%;
+      position: relative;
+      &:nth-child(odd) {
+        background: $bg-color;
+      }
+      &:hover {
+        background: $light-green-color;
+      }
+      p {
+        cursor: pointer;
+        height: 40px;
+        width: 100%;
+        margin: 0;
+        line-height: 2.7;
+        font-size: 14px;
+        padding-left: 10px;
+      }
+    }
+    div > span:nth-child(2) {
+      margin-right: 10px;
+      svg {
+        padding: 2px 0 0 0;
+      }
+    }
+    div > span:nth-child(3) {
+      position: absolute;
+      right: 60px;
+      font-size: 20px;
+      z-index: 1;
+      color: red;
+      display: none;
+      top: 4px;
+    }
+    div:hover > span:nth-child(3) {
+      display: block;
+    }
+  }
+  .input {
+    width: 50%;
+    height: 35px;
+    border-radius: 10px;
+    background: $bg-color;
+    color: $bg-text-color;
+    border: unset;
+    outline: unset;
+    padding: 0 0 0 10px;
+    font-size: 14px;
+  }
+  button {
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    bottom: 30px;
+    &:hover {
+      color: $white-color;
+    }
+  }
+}
+
+/********************************************************************/
+/************************** MEDIA QUERIES ***************************/
+/********************************************************************/
+
+@media (min-width: 992px) {
+  //body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+  //  margin-left: 0;
+  //}
+  #sidebar-wrapper {
+    margin-left: 0;
+    width: 20%;
+  }
+  #main-content-wrapper {
+    min-width: 0;
+    width: 80%;
+    position: fixed;
+    right: 0;
+    .collapse-btn {
+      display: none;
+    }
+  }
+}
