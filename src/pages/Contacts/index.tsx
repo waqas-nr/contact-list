@@ -95,7 +95,7 @@ const Contacts = () => {
     if (event && event.target) {
       const { target: { value } } = event;
       setSearch(value);
-      const obj = parsedQuery(queryString);
+      const obj: any = parsedQuery(queryString);
       delete obj.q;
       if (value) {
         obj.q = value;

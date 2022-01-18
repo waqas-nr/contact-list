@@ -3,33 +3,24 @@
 */
 
 import React from 'react';
-import { BallTriangle } from 'react-loader-spinner';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 type LoaderProps = {
-  width?: string
-  height?: string
-  className?: string
+  width?: string,
+  height?: string,
+  className?: string,
   title? : any,
 }
 
-const Loader = ({ width = '100', height = '100', title, className = '' }: LoaderProps) => {
+const Loader = ({ title, className = '' }: LoaderProps) => {
   return (
-    <>
-      <div className={`d-flex align-items-center ${className}`}>
-        <div className="w-100 loader">
-          <BallTriangle
-            height={height}
-            width={width}
-            color="grey"
-            arialLabel="loading-indicator"
-          />
-          {title && (
-            <>{title}</>
-          )}
-        </div>
+    <div className={`d-flex align-items-center justify-content-center ${className}`}>
+      <div className="w-100 text-center">
+        <div className="sbl-circ-dual text-center"/>
+        {title && (
+          <p>{title}</p>
+        )}
       </div>
-    </>
+    </div>
   )
 }
 

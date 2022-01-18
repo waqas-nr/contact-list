@@ -49,13 +49,6 @@ $dark-gray: #B4C0D3;
   background-color: $green-color !important;
 }
 
-.loader {
-  div:first-child {
-    display: block !important;
-    text-align: center;
-  }
-}
-
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   margin-left: 0;
   z-index: 1;
@@ -295,6 +288,42 @@ body.sb-sidenav-toggled #wrapper #main-content-wrapper {
     &:hover {
       color: $white-color;
     }
+  }
+}
+
+/********************************************************************/
+/************************* Loader Styling ***************************/
+/********************************************************************/
+
+.sbl-circ-dual {
+  height: 48px;
+  width: 48px;
+  color: #5a5a5a;
+  display: inline-block;
+  position: relative;
+  border: 5px solid;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: rotate 1s linear infinite; }
+.sbl-circ-dual::after {
+  content: '';
+  height: 40%;
+  width: 40%;
+  display: block;
+  color: inherit;
+  margin: 10px auto;
+  position: relative;
+  border: 5px solid;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: rotate .5s linear infinite reverse; }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

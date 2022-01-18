@@ -7,8 +7,8 @@ import React from 'react';
 // Import React Bootstrap Component
 import Button from 'react-bootstrap/Button';
 
-// Unique Id generator
-import { v4 as uuidv4 } from 'uuid';
+// Import Utils
+import { generateRandomString } from '../../../utils/functions';
 
 type BootstrapButtonProps = {
   disabled?: boolean,
@@ -22,7 +22,7 @@ type BootstrapButtonProps = {
 }
 
 const BootstrapButton = ({
-  id = uuidv4.toString(),
+  id = generateRandomString(),
   type,
   title,
   size = 'lg',

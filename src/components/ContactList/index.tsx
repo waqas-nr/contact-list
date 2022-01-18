@@ -5,9 +5,6 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-// Unique Id generator
-import { v4 as uuidv4 } from 'uuid';
-
 // Import React Bootstrap Component
 import ListGroup from 'react-bootstrap/ListGroup';
 
@@ -56,13 +53,7 @@ const ContactList = ({
             scrollableTarget="scrollable-contact"
             loader={
               <div className="d-flex justify-content-center min-height-25vh">
-                <Loader
-                  height="50"
-                  width="50"
-                  title={
-                    <p className="mt-4">Loading...</p>
-                  }
-                />
+                <Loader title="Loading..."/>
               </div>
             }
             endMessage={
@@ -73,7 +64,7 @@ const ContactList = ({
           >
             {map(contacts, (contact: any) => (
               <ListGroup.Item
-                key={uuidv4()}
+                key={contact.id}
                 as="li"
                 className="d-flex justify-content-between align-items-start bg-light ps-0 pe-0"
               >
@@ -92,7 +83,7 @@ const ContactList = ({
                 {!isEmpty(contact.tags) &&
                 map(contact.tags, tag => (
                   <Tags
-                    key={uuidv4()}
+                    key={`${contact.id}-${tag.name}`}
                     bg="light-green-color"
                     pill={false}
                     children={tag.name}
@@ -123,7 +114,7 @@ const ContactList = ({
         </div>
       )}
       {(isFetching || isSearching) && (
-        <Loader height="50" width="50" className="min-height-100vh" />
+        <Loader className="min-height-100vh" />
       )}
     </>
   )

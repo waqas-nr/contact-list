@@ -57,7 +57,7 @@ const App = () => {
         <div>{error}</div>
       )}
       {!authenticated && !error && (
-        <Loader className="min-height-100vh" />
+        <Loader title="Authenticating..." className="min-height-100vh" />
       )}
     </>
   );

@@ -7,8 +7,8 @@ import React from 'react';
 // Import React Bootstrap Component
 import FormCheck from 'react-bootstrap/FormCheck';
 
-// Unique Id generator
-import { v4 as uuidv4 } from 'uuid';
+// Import Utils
+import { generateRandomString } from '../../../utils/functions';
 
 type CheckboxProps = {
   type: any,
@@ -20,7 +20,7 @@ type CheckboxProps = {
 }
 
 const Checkbox = ({
-  id = uuidv4.toString(),
+  id = generateRandomString(),
   checked,
   type,
   label,

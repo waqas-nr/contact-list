@@ -22,7 +22,7 @@ import MessageReceived from './messageRecieved';
 import Button from '../UI/Button';
 
 // Import Utils
-import { checkAuthToken, getAuthToken, stringifyQuery, parsedQuery } from '../../utils/functions';
+import { checkAuthToken, getAuthToken, stringifyQuery } from '../../utils/functions';
 
 type FiltersProps = {
   submitFilter: (query: string) => void,
@@ -152,6 +152,7 @@ const Filters = ({ submitFilter }: FiltersProps) => {
         <>
           <IncludeTags
             heading="Include Tags:"
+            tagType="included-tags"
             tags={extractTags(excludedTags)}
             isSelected={isSelected}
             selectedTags={includedTags}
@@ -162,6 +163,7 @@ const Filters = ({ submitFilter }: FiltersProps) => {
           />
           <ExcludeTags
             heading="Exclude Tags:"
+            tagType="excluded-tags"
             tags={extractTags(includedTags)}
             isSelected={isSelected}
             selectedTags={excludedTags}
@@ -173,7 +175,7 @@ const Filters = ({ submitFilter }: FiltersProps) => {
         </>
       )}
       {isFetching && (
-        <Loader height="50" width="50" className="min-height-50vh" />
+        <Loader className="min-height-50vh" />
       )}
       <MessageSent
         messageSentMin={messageSentMin}
