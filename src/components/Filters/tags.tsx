@@ -4,23 +4,20 @@
 
 import React from 'react';
 
-// Import Bootstrap Component
-import Badge from 'react-bootstrap/Badge';
-
-// Import Fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
-
 // Import Lodash
 import map from 'lodash/map';
+
+// Import SVG
+import trash from '../../assets/trash.png'
+import check from '../../assets/check.png'
 
 type TagsFilterProps = {
   heading: string,
   tagType: string,
   selectedTags: string[],
-  tags: any[],
-  onChangeTags: any,
-  isSelected: any,
+  tags: string[],
+  onChangeTags: (tag: string, method: string) => void,
+  isSelected: (arr: string[], tag: string) => boolean,
 }
 
 const TagsFilter = ({ tagType, heading, tags, selectedTags, isSelected, onChangeTags }: TagsFilterProps) => {
@@ -35,11 +32,9 @@ const TagsFilter = ({ tagType, heading, tags, selectedTags, isSelected, onChange
             </p>
             {isSelected(selectedTags, tag) && (
               <>
-                <Badge className="mt-2 mb-2" bg="light-green-color" pill>
-                  <FontAwesomeIcon icon={faCheck} />
-                </Badge>
+                <img src={check} alt='checked' className="checked"/>
                 <span onClick={() => onChangeTags(tag, 'remove')}>
-                  <FontAwesomeIcon icon={faTrash} />
+                  <img src={trash} alt="Trash" />
                 </span>
               </>
             )}

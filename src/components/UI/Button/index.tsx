@@ -2,22 +2,22 @@
   Button Component
 */
 
-import React from 'react';
+import React, {ReactElement} from 'react';
 
 // Import React Bootstrap Component
 import Button from 'react-bootstrap/Button';
 
 // Import Utils
-import { generateRandomString } from '../../../utils/functions';
+import {generateRandomString} from '../../../utils/functions';
 
 type BootstrapButtonProps = {
   disabled?: boolean,
-  type: any,
+  type: 'button' | 'submit' | 'reset' | undefined,
   onClick?: any,
   size?: any,
   id?: string,
   bg?: string,
-  title: any,
+  title: string | Element | ReactElement,
   className?: string,
 }
 
@@ -29,7 +29,7 @@ const BootstrapButton = ({
   bg = 'primary',
   className = '',
   disabled = false,
-  onClick = (event: any) => {event.preventDefault();}
+  onClick = (event: Event) => {event.preventDefault();}
 }: BootstrapButtonProps) => (
   <Button
     id={id}

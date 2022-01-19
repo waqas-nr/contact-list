@@ -2,21 +2,21 @@
   Checkbox Component
 */
 
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 // Import React Bootstrap Component
-import FormCheck from 'react-bootstrap/FormCheck';
+import FormCheck, {FormCheckType} from 'react-bootstrap/FormCheck';
 
 // Import Utils
-import { generateRandomString } from '../../../utils/functions';
+import {generateRandomString} from '../../../utils/functions';
 
 type CheckboxProps = {
-  type: any,
+  type: undefined | FormCheckType,
   checked: boolean,
   id?: string,
   label?: string,
   className?: string,
-  onChange: any,
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
 const Checkbox = ({

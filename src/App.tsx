@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
+import './App.css';
 
 // Import Components
 import Contacts from './pages/Contacts';
 import Loader from './components/Loader';
 
 // Import Utils
-import { setAuthToken, removeAuthToken } from './utils/functions';
+import {removeAuthToken, setAuthToken} from './utils/functions';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);

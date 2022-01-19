@@ -2,7 +2,7 @@
   Messages Received Filter Component
 */
 
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 // Import Input Component
 import Input from '../UI/Input';
@@ -10,7 +10,7 @@ import Input from '../UI/Input';
 type MessageReceivedProps = {
   messageSentMin: string,
   messageSentMax: string,
-  handleInputChange: any,
+  handleInputChange: (object:{event: ChangeEvent<HTMLInputElement>, field: string}) => void,
 }
 
 const MessageReceived = ({ messageSentMin, messageSentMax, handleInputChange }: MessageReceivedProps) => (
@@ -22,14 +22,14 @@ const MessageReceived = ({ messageSentMin, messageSentMax, handleInputChange }: 
         placeholder="Min"
         value={messageSentMin}
         className="input me-2"
-        onChange={(event: any) => handleInputChange({event, field: 'messageReceivedMin'})}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange({event, field: 'messageReceivedMin'})}
       />
       <Input
         id="message-received-max"
         placeholder="Max"
         value={messageSentMax}
         className="input"
-        onChange={(event: any) => handleInputChange({event, field: 'messageReceivedMax'})}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange({event, field: 'messageReceivedMax'})}
       />
     </div>
   </div>

@@ -2,25 +2,24 @@
   Search Component
 */
 
-import React from 'react';
-
-// Import Fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import React, {ChangeEvent} from 'react';
 
 // Import UI Component
 import Input from '../UI/Input';
 
+// Import PNG
+import SearchImage from '../../assets/search.png'
+
 type SearchProps = {
   search: string,
-  handleSearch: any,
+  handleSearch: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
 const Search = ({ search, handleSearch }: SearchProps) => {
 
   return (
     <div id="search" className="d-flex mt-4">
-      <FontAwesomeIcon icon={faSearch} />
+      <img src={SearchImage} alt="Search" />
       <Input id="contacts-filters" type="text" placeholder="Search contacts" value={search} onChange={handleSearch} />
     </div>
   )

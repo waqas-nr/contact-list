@@ -2,7 +2,7 @@
   Messages Sent Filter Component
 */
 
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 // Import React Bootstrap Component
 import Input from "../UI/Input";
@@ -10,7 +10,7 @@ import Input from "../UI/Input";
 type MessageSentProps = {
   messageSentMin: string,
   messageSentMax: string,
-  handleInputChange: any,
+  handleInputChange: (object:{event: ChangeEvent<HTMLInputElement>, field: string}) => void,
 }
 
 const MessageSent = ({ messageSentMin, messageSentMax, handleInputChange }: MessageSentProps) => (
@@ -22,13 +22,13 @@ const MessageSent = ({ messageSentMin, messageSentMax, handleInputChange }: Mess
         placeholder="Min"
         value={messageSentMin}
         className="input me-3"
-        onChange={(event: any) => handleInputChange({event, field: 'messageSentMin'})} />
+        onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange({event, field: 'messageSentMin'})} />
       <Input
         id="message-sent-max"
         placeholder="Max"
         value={messageSentMax}
         className="input"
-        onChange={(event: any) => handleInputChange({event, field: 'messageSentMax'})}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange({event, field: 'messageSentMax'})}
       />
     </div>
   </div>

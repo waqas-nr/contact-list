@@ -1,16 +1,12 @@
 /*
   Contacts Page
 */
-import React, { useEffect, useState } from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 // Import lodash
-import debounce from 'lodash/debounce';
-import map from 'lodash/map';
 import concat from 'lodash/concat';
-
-// Import Fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import map from 'lodash/map';
+import debounce from 'lodash/debounce';
 
 // Import Components
 import SideBar from '../../components/SideBar';
@@ -19,17 +15,19 @@ import ContactList from '../../components/ContactList';
 import BootstrapButton from '../../components/UI/Button';
 import Checkbox from '../../components/UI/Checkbox';
 
+// Import PNG
+import filter from '../../assets/filter.png'
+
 // Import Utils
-import {
-  checkAuthToken,
-  getAuthToken,
-  parsedQuery,
-  stringifyQuery,
-} from '../../utils/functions';
+import {checkAuthToken, getAuthToken, parsedQuery, stringifyQuery,} from '../../utils/functions';
 
 const defaultArray: string[] = [];
-const contactDefaultArray: any[] = [];
+const contactDefaultArray: object[] = [];
 let searching: boolean = false;
+
+interface keyable {
+  [key: string]: any
+}
 
 const Contacts = () => {
   const [totalContacts, setTotalContacts] = useState(0);
@@ -91,11 +89,12 @@ const Contacts = () => {
     }
   }
 
-  const handleSearch = (event: any) => {
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     if (event && event.target) {
-      const { target: { value } } = event;
+      const { target } = event;
+      const { value } = target || {};
       setSearch(value);
-      const obj: any = parsedQuery(queryString);
+      const obj: keyable = parsedQuery(queryString);
       delete obj.q;
       if (value) {
         obj.q = value;
@@ -112,29 +111,29 @@ const Contacts = () => {
     }
   }
 
-  const submitFilter = (query: any) => {
-  let q: any = parsedQuery(queryString);
+  const submitFilter = (query: string) => {
+  let q: keyable = parsedQuery(queryString);
     delete q.tags;
     delete q.notTags;
     delete q.minMessagesSent;
     delete q.maxMessagesSent;
     delete q.minMessagesRecv;
     delete q.maxMessagesRecv;
-    q = `?${stringifyQuery(q)}`;
+    let updatedQueryString = `?${stringifyQuery(q)}`;
     if (query) {
-      q = `${q}&${query}`
+      updatedQueryString = `${updatedQueryString}&${query}`
     }
     searching = true;
     setContacts(contactDefaultArray);
-    setQueryString(q);
+    setQueryString(updatedQueryString);
     setIsSearching(true);
     setIsSelectedAll(false);
     setSelectedContacts([]);
     setContactsError(null);
-    fetchContacts(q);
+    fetchContacts(updatedQueryString);
   }
 
-  const toggleSideBar = (event: any) => {
+  const toggleSideBar = (event: Event) => {
     const sidebarToggle = document.querySelector('#sidebarToggle');
     if (sidebarToggle) {
       event.preventDefault();
@@ -143,23 +142,22 @@ const Contacts = () => {
   }
 
   const loadMore = () => {
-    let q: any = parsedQuery(queryString);
+    let q: keyable = parsedQuery(queryString);
     delete q.page;
     q.page = nextPage;
-    q = `?${stringifyQuery(q)}`;
-    fetchContacts(q);
+    fetchContacts(`?${stringifyQuery(q)}`);
   }
 
   const handleSelectAll = () => {
     if (isSelectedAll) {
       setSelectedContacts([]);
     } else {
-      setSelectedContacts(map(contacts, (contact: any) => contact.id));
+      setSelectedContacts(map(contacts, (contact: keyable) => contact.id));
     }
     setIsSelectedAll(!isSelectedAll);
   };
 
-  const handleCheckbox = (event: any) => {
+  const handleCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
     if (event && event.target) {
       const { id, checked } = event.target;
       if (!checked) {
@@ -184,7 +182,7 @@ const Contacts = () => {
             id="sidebarToggle"
             type="button"
             title={
-              <FontAwesomeIcon icon={faFilter} />
+              <img src={filter} alt="filter" width="25px" height="25px"/>
             }
             className="btn btn-light collapse-btn"
             onClick={toggleSideBar}
@@ -196,7 +194,7 @@ const Contacts = () => {
               title="+"
               bg="light-green-color"
               size="sm"
-              className="ms-3 ms-lg-0"
+              className="ms-3 ms-lg-0 round-xs-btn"
             />
           </div>
         </div>

@@ -2,7 +2,7 @@
   Input Component
 */
 
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 // Import React Bootstrap Component
 import FormControl from 'react-bootstrap/FormControl';
@@ -13,7 +13,7 @@ type InputProps = {
   placeholder: string,
   value: string,
   className?: string,
-  onChange: any,
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
 const Input = ({id, type = 'text', placeholder, value, className = '', onChange}: InputProps) => {

@@ -2,7 +2,7 @@
   Contact List Component
 */
 
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Import React Bootstrap Component
@@ -24,11 +24,15 @@ type ContactListProps = {
   isFetching: boolean,
   isSearching: boolean,
   totalContacts: number,
-  contacts: any[],
+  contacts: object[],
   selectedContacts: string[],
-  contactsError: any,
-  loadMore: any,
-  handleCheckbox: any,
+  contactsError: string | null,
+  loadMore: () => void,
+  handleCheckbox: (event: ChangeEvent<HTMLInputElement>) => void,
+}
+
+interface keyable {
+  [key: string]: any
 }
 
 const ContactList = ({
@@ -62,7 +66,7 @@ const ContactList = ({
               </p>
             }
           >
-            {map(contacts, (contact: any) => (
+            {map(contacts, (contact: keyable) => (
               <ListGroup.Item
                 key={contact.id}
                 as="li"
@@ -96,7 +100,7 @@ const ContactList = ({
                   title="+"
                   bg="light-green-color"
                   size="sm"
-                  className="mt-4"
+                  className="mt-4 round-xs-btn"
                 />
               </ListGroup.Item>
             ))}

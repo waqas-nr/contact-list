@@ -2,7 +2,7 @@
   Filters Component
 */
 
-import React, { useEffect, useState } from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 // Import Lodash
 import isEmpty from 'lodash/isEmpty';
@@ -22,14 +22,14 @@ import MessageReceived from './messageRecieved';
 import Button from '../UI/Button';
 
 // Import Utils
-import { checkAuthToken, getAuthToken, stringifyQuery } from '../../utils/functions';
+import {checkAuthToken, getAuthToken, stringifyQuery} from '../../utils/functions';
 
 type FiltersProps = {
   submitFilter: (query: string) => void,
 }
 
 type handleInputChangeParams = {
-  event: any,
+  event: ChangeEvent<HTMLInputElement>,
   field: string,
 }
 
@@ -39,7 +39,11 @@ type onChangeTagsParams = {
   method: string,
 }
 
-const filters: any = {};
+interface keyable {
+  [key: string]: any
+}
+
+const filters: keyable = {};
 
 const Filters = ({ submitFilter }: FiltersProps) => {
   const defaultArray: string[] = [];
@@ -76,7 +80,7 @@ const Filters = ({ submitFilter }: FiltersProps) => {
             return Promise.reject(error);
           }
           const { tags } = data || {};
-          const tagNames = map(tags, (tag: any ) => tag.name)
+          const tagNames = map(tags, (tag: keyable ) => tag.name)
           setIsFetching(false);
           setTags(tagNames);
         }).catch(error => {

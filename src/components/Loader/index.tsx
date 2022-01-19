@@ -2,13 +2,13 @@
     Loader Component
 */
 
-import React from 'react';
+import React, {ReactElement} from 'react';
 
 type LoaderProps = {
   width?: string,
   height?: string,
   className?: string,
-  title? : any,
+  title? : string | Element | ReactElement,
 }
 
 const Loader = ({ title, className = '' }: LoaderProps) => {
